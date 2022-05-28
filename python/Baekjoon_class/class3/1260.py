@@ -1,13 +1,15 @@
 # BOJ 1260 BFS와 DFS
 # 0528_prepare
-# 11% 에서 틀렸습니다
+# 88% 에서 틀렸습니다
 '''
 반례
-6 8 1
-[[1, 6], [6, 2], [2, 4], [4, 3], [3, 5], [5, 1], [5, 6], [2, 3]]
--> 답: 1 5 3 2 4 6, 1 5 6 3 2 4
--> 내 답: 1 6 5 3 2 4, 1 6 5 2 3 4
+5 1 1
+5 4
+-> 답: 1 5 4
+-> 내 답: 1 4 5
+위에서 작은수로 정렬하기 위해 입력값의 순서를 바꾼데에서 오류가 난 듯함
 '''
+
 import sys
 from collections import deque
 input = sys.stdin.readline
@@ -16,10 +18,10 @@ N, M, V = map(int, input().split())
 graph = []
 for i in range(M):
     temp = list(map(int, input().split()))
-    # if temp[0] > temp[1]:
-    #     graph.append(temp[::-1])
-    # else:
-    graph.append(temp)
+    if temp[0] > temp[1]:
+        graph.append(temp[::-1])
+    else:
+        graph.append(temp)
 
 graph.sort()
 
@@ -78,3 +80,5 @@ print(*result_dfs)
 print(*result_bfs)
     
         
+        
+# https://www.acmicpc.net/board/view/24356
