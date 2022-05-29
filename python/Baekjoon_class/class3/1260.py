@@ -1,15 +1,14 @@
 # BOJ 1260 BFS와 DFS
-# 0528_prepare
-# 88% 에서 틀렸습니다
+# 2764ms
+# 33452KB
 '''
-반례
-5 1 1
-5 4
--> 답: 1 5 4
--> 내 답: 1 4 5
-위에서 작은수로 정렬하기 위해 입력값의 순서를 바꾼데에서 오류가 난 듯함
+반례 해결
+1000 1 1
+99 1000
+-> 답: 1, 1
+-> 내 답: 1 99 1000, 1 99 1000
+어떠한 간선도 존재하지 않는 노드가 존재하지 않을 경우
 '''
-
 import sys
 from collections import deque
 input = sys.stdin.readline
@@ -18,24 +17,25 @@ N, M, V = map(int, input().split())
 graph = []
 for i in range(M):
     temp = list(map(int, input().split()))
-    if temp[0] > temp[1]:
-        graph.append(temp[::-1])
-    else:
-        graph.append(temp)
+    graph.append(temp)
 
-graph.sort()
+# 한 노드에 여러 노드가 있을 때, 숫자가 작은 노드 먼저 탐색해야함 ->  정렬
+graph.sort(key=lambda x:(min(x), max(x)))
 
 # DFS
 visited_dfs = [True] + [False] * (N)
 result_dfs = []
 
 def DFS(graph, v): 
+    
     global visited_dfs
     
     # 현재노드 방문처리
     visited_dfs[v] = True
     # 현재 노드 저장
     result_dfs.append(v)
+    
+    # 양방향 간선 고려
     for i in range(M):
         if graph[i][0] == v and visited_dfs[graph[i][1]] == False:
             DFS(graph, graph[i][1])
@@ -67,18 +67,9 @@ def BFS(graph, v):
                 visited_bfs[graph[i][0]] = True 
 
 DFS(graph, V)
-for i in range(M):
-    if visited_dfs[graph[i][0]] == False:
-        DFS(graph, graph[i][0])
-
 BFS(graph, V)
-for i in range(M):
-    if visited_bfs[graph[i][0]] == False:
-        BFS(graph, graph[i][0])
        
 print(*result_dfs)
-print(*result_bfs)
-    
+print(*result_bfs) 
         
-        
-# https://www.acmicpc.net/board/view/24356
+# 반례 참고 https://www.acmicpc.net/board/view/24356
