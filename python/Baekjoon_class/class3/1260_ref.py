@@ -1,13 +1,12 @@
 # BOJ 1260 BFS와 DFS
-# 108ms
-# 32468KB
+# 80ms
+# 32280KB
 # 처음에 연결된 노드를 그래프로 만들어놓으면 양방향 간선인것과 
 # 작은 노드부터 탐색하는 과정을 따로 처리해주지 않아도 됨
+# BFS 구현할 때 deque를 쓰는 것보다 list를 쓰는 게 더 효율적
 
 import sys
-from collections import deque
 sys.setrecursionlimit(10**6)
-
 input = sys.stdin.readline
 
 N, M, V = map(int, input().split())
@@ -35,7 +34,7 @@ def DFS(graph, v):
 
 # BFS -> 큐
 visited_bfs = [False] * (N + 1)
-queue = deque()
+queue = []
 result_bfs = []
 def BFS(graph, v):
     # 현재 노드 큐에 넣고 방문처리
@@ -44,7 +43,7 @@ def BFS(graph, v):
     # 큐가 비지 않을 때까지
 	while queue:
         # 큐에서 pop
-		node = queue.popleft()
+		node = queue.pop(0)
 		result_bfs.append(node)
         # 현재 노드에 연결되어있고 방문하지 않은 노드 큐에 삽입, 방문처리
 		for i in graph[node]:
