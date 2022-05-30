@@ -1,7 +1,11 @@
 # BOJ 24444 알고리즘 수업 - 너비 우선 탐색 1
 # 인접 정점 오름차순 방문
-# 2208ms
-# 58788KB
+# 608ms
+# 66608KB
+# list로 했을 때보다 deque로 구현했을 때 약 1400ms정도 더 빠르다.
+# deque가 list에 비해 데이터를 넣고 빼는 속도가 효율적이다.
+
+from collections import deque
 import sys
 input = sys.stdin.readline
 
@@ -17,26 +21,22 @@ for j in graph:
 
 result = [0] * (N + 1)
 visited = [False] * (N + 1)
-queue = []
-count = 1
-def DFS(r):
-    global count
-
+def BFS(r):
+    count = 1
+    queue = deque([r])
     # 방문처리
     visited[r] = True
-    queue.append(r)
     result[r] = count
 
     # 인접한 노드 탐색
     while queue:
-        node = queue.pop(0)
+        node = queue.popleft()
         for i in graph[node]:
-            if visited[i] == False:
+            if not visited[i]:
                 queue.append(i)
                 visited[i] = True
                 count += 1
                 result[i] = count
 
-DFS(R)
-for i in range(1, N+1):
-    print(result[i])
+BFS(R)
+print('\n'.join(map(str, result[1:])))
