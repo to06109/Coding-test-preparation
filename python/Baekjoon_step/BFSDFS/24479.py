@@ -2,6 +2,7 @@
 # 700ms
 # 156956KB
 import sys
+sys.setrecursionlimit(10**6)
 input = sys.stdin.readline
 N, M, R = map(int, input().split())
 result = [0] * (N + 1)
