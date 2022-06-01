@@ -1,5 +1,8 @@
 # BOJ 2667 단지번호 붙이기
-# DFS 풀이중
+# DFS
+# 72ms
+# 31088KB
+
 import sys
 input = sys.stdin.readline
 
@@ -8,9 +11,9 @@ graph = []
 for i in range(N):
     graph.append(input().rstrip())
 
-# 상하좌우    
-dx = [0, 0, -1, 1]
-dy = [-1, 1, 0, 0]
+# 상하좌우  
+dx = [-1, 1, 0, 0]  
+dy = [0, 0, -1, 1]
 
 result = []
 visited = [[False] * N for _ in range(N)]
@@ -26,8 +29,9 @@ def DFS(x, y):
     for i in range(4):
         next_x = x + dx[i]
         next_y = y + dy[i]
-        if graph[next_x][next_y] == '1' and not visited[next_x][next_y]:
-            DFS(next_x, next_y)
+        if next_x >= 0 and next_y >= 0 and next_x < N and next_y < N:
+            if graph[next_x][next_y] == '1' and not visited[next_x][next_y]:
+                DFS(next_x, next_y)
         
 for i in range(N):
     for j in range(N):
@@ -36,4 +40,7 @@ for i in range(N):
             DFS(i, j)
             result.append(count)
             
-print(result)
+print(len(result))
+result.sort()
+for i in result:
+    print(i)
