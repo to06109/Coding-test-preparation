@@ -1,7 +1,7 @@
 # BOJ 2667 단지번호 붙이기
 # DFS
-# 72ms
-# 31088KB
+# 68ms
+# 31084KB
 
 import sys
 input = sys.stdin.readline
@@ -42,5 +42,8 @@ for i in range(N):
             
 print(len(result))
 result.sort()
-for i in result:
-    print(i)
+# for i in result:
+#     print(i)
+
+### join은 요소가 str형이어야 한다!
+print("\n".join(map(str, result)))
