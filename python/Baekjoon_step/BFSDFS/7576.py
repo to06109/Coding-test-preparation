@@ -1,4 +1,5 @@
 # BOJ 7576 토마토
+# 풀이 중. 처음에 1이 여러 개 있을 때 동시에 BFS 시작하는 것을 구현하지 못함
 import sys
 from collections import deque
 input = sys.stdin.readline
