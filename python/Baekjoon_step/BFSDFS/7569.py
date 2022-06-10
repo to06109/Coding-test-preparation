@@ -1,5 +1,5 @@
 # BOJ 7569 토마토
-# 3392ms
+# 3296ms
 # 50856KB
 
 import sys
@@ -45,11 +45,7 @@ for h in graph:
             if m == 0:
                 print(-1)
                 exit(0)
+        # 토마토를 모두 익힌 상황 -> 최소일수 구하기
         result = max(result, max(n))
 
-# 토마토를 모두 익힌 상황 -> 최소일수 구하기
-# result = 0
-# for h in graph:
-#     for n in h:
-#         result = max(result, max(n))
 print(result - 1)
