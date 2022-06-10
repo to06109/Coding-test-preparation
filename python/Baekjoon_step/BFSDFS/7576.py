@@ -23,6 +23,7 @@ for i in range(N):
             
 def BFS():
     while queue:
+        print(queue)
         # 토마토의 위치좌표 꺼내기
         node = queue.popleft()
         for i in range(4):
