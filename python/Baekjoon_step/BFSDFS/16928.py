@@ -1,19 +1,21 @@
 # BOJ 16928 뱀과 사다리 게임
-# 108ms
+# list 대신 dict 이용
+# 100ms
 # 32460KB
 
 import sys
 from collections import deque
 input = sys.stdin.readline
-graph = [i for i in range(1, 101)]
 N, M = map(int, input().split())
 
-ladder = []
-snake = []
+ladder = dict()
+snake = dict()
 for n in range(N):
-    ladder.append(list(map(int, input().split())))
+    depart, arrival = map(int, input().split())
+    ladder[depart] = arrival
 for m in range(M):
-    snake.append(list(map(int, input().split())))
+    start, end = map(int, input().split())
+    snake[start] = end
 
 visited = [False] * 101
 
@@ -29,15 +31,12 @@ def BFS():
             return
         for j in range(1, 7):
             next = cur + j
-            if 0<=next<101 and visited[next] == False:
+            if 0<next<101 and visited[next] == False:
                 # 사다리 확인
-                for a in ladder:
-                    if next == a[0]:
-                        next = a[1]
-                for b in snake:
-                    if next == b[0]:
-                        next = b[1]
-
+                if next in ladder.keys():
+                    next = ladder[next]
+                if next in snake.keys():
+                    next = snake[next]
                 queue.append([next, cnt + 1])
                 visited[next] = True
 
