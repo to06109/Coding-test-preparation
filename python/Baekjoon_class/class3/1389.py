@@ -1,6 +1,12 @@
 # BOJ 1389 케빈 베이컨의 6단계 법칙
-# 296ms
-# 34932KB
+# 92ms
+# 32452KB
+'''
+굳이 각 사람마다 출발점과 목적지로 케빈 베이컨 수를 구하게 이중 for문 처리해줄 필요 없이
+BFS함수에 출발점만 주면 출발점에서 그래프에 연결된 모든 노드에 도착하는 거리를 각각 num에 저장할 수 있으므로
+함수를 다 돈 뒤에 num의 합을 구하면 그게 start번째 사람의 케빈 베이컨 수가 된다.
+
+'''
 
 import sys
 from collections import deque
@@ -14,36 +20,26 @@ for i in range(M):
     graph[u].append(v)
     graph[v].append(u)
 
-# 인접정점 오름차순 방문
-for j in range(N + 1):
-    graph[j].sort()
-
-def check_baken(s): # BFS 하자
-    queue = deque([])
-    queue.append([s, 0])
-    global count
+def check_bacon(s): # BFS
+    queue = deque([s])
+    num = [0] * (N + 1)
     visited[s] = True # 방문처리
-    
+
     while queue:
-        cur, cnt = map(int, queue.popleft())
-        if cur == end:
-            return cnt
+        cur = queue.popleft()
         for i in graph[cur]:
             if not visited[i]:
-                queue.append([i, cnt + 1])
+                num[i] = num[cur] + 1 # i까지 가는 거리 계산
+                queue.append(i)
+                visited[i] = True
+    
+    return sum(num)
 
 result = []
-for start in range(1, N+1): # 모든 유저의 kebin baken 수 세기
-    baken = 0
-    for end in range(1, N+1): # 유저 한명의 kebin baken 수 세기
-        visited = [False] * (N + 1)
-        count = 0
-        if end == start: # 본인 -> 본인 케이스 제외
-            continue 
-        baken += check_baken(start) # 출발지
-    result.append(baken)
+for start in range(1, N+1): # 모든 유저의 kevin bacon 수 세기
+    visited = [False] * (N + 1)
+    bacon = check_bacon(start) # 출발지
+    result.append(bacon)
 
-temp = min(result)
-print(result.index(temp) + 1) # 케빈베이컨 수가 가장 작은 사람 출력
-        
+print(result.index(min(result)) + 1) # 케빈베이컨 수가 가장 작은 사람 출력
 
