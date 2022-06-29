@@ -1,7 +1,7 @@
 def solution(id_list, report, k):
-    result = [0 for _ in range(len(id_list))]
-    dict = {} # 각 사용자가 신고한 사람 배열 정리
-    dict2 = {} # 각 사용자별 신고받은 횟수 정리
+    result = [0 for _ in range(len(id_list))] # 각 사용자가 받는 결과메일 개수
+    dict = {} # 각 사용자가 신고한 사람 배열
+    dict2 = {} # 각 사용자별 신고받은 횟수
     for i in id_list:
         dict2[i] = 0
     for j in report:
@@ -18,9 +18,9 @@ def solution(id_list, report, k):
         temp = dict[n]
         for z in temp:
             dict2[z] += 1
-    
+            
+    # 신고당하는 유저목록 
     reporteds = []
-    # 신고당하는 애들 거르기
     for a in dict2.keys():
         if dict2[a] >= k:
             reporteds.append(a)
