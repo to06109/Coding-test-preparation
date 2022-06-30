@@ -1,4 +1,4 @@
-# 프로그래머스 문자열 압축
+# 프로그래머스 문자열 압축 - 완전탐색
 def solution(s):
     result = [] # 1 - n개로 자를 때 나오는 문자열의 길이 배열
     n = len(s)
@@ -37,7 +37,7 @@ def solution(s):
                 
         result.append(len(string))            
 
-    for i in range(1, n+1):
+    for i in range(1, n+1): # 완탐, 문자열을 1개로 - n개로 잘랐을 경우  모두 고려
         count_len(i)
         
     answer = min(result)
