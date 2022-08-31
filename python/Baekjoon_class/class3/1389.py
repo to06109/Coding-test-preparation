@@ -32,7 +32,6 @@ def check_bacon(s): # BFS
                 num[i] = num[cur] + 1 # i까지 가는 거리 계산
                 queue.append(i)
                 visited[i] = True
-    
     return sum(num)
 
 result = []
