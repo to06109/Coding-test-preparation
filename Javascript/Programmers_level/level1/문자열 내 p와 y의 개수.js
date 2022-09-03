@@ -10,3 +10,8 @@ function solution(s) {
   else if (p === 0 && y === 0) return true
   else return false
 }
+
+// 다른 코드 참고
+function numPY(s) {
+  return s.toUpperCase().split('P').length === s.toUpperCase().split('Y').length
+}
