@@ -10,3 +10,12 @@ def solution(n):
             break
             
     return answer
+
+# 다은 사람의 풀이 -> count 이용
+def nextBigNumber(n):
+    num1 = bin(n).count('1')
+    while True:
+        n = n + 1
+        if num1 == bin(n).count('1'):
+            break
+    return n
