@@ -19,3 +19,21 @@ def solution(n,a,b):
         n = n // 2
 
     return answer
+
+# 다른 사람의 풀이 -> 이게 더 빠르다.
+# def solution(n, a, b):
+#     answer = 0
+#     while True:
+#         if a  == b:
+#             break
+#         else:
+#             if a % 2 == 1:
+#                 a = a // 2 + 1
+#             else:
+#                 a = a // 2
+#             if b % 2 == 1:
+#                 b = b // 2 + 1
+#             else:
+#                 b = b // 2
+#             answer += 1
+#     return answer
