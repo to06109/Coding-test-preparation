@@ -6,7 +6,7 @@ def solution(cacheSize, cities):
         return 5 * len(cities)
     
     for i in range(len(cities)):
-        city = cities[i].lower() # 소문자로 바꾸기?
+        city = cities[i].lower() # 소문자로 바꾸기
         if city not in cache: # miss
             if len(cache) == cacheSize: 
                 # 캐시 교체
