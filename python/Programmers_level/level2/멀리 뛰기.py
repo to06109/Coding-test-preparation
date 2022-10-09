@@ -11,6 +11,7 @@ def solution(n):
     one_num = n
     two_num = 0
     while True:
+        # 조합
         answer += factorial(one_num + two_num) // (factorial(one_num) * factorial(two_num))
         two_num += 1
         one_num = n - 2 * two_num
@@ -19,7 +20,7 @@ def solution(n):
 
     return answer % 1234567
 
-# 다른 사람의 풀이
+# 다른 사람의 풀이 ...피보나치였다니
 def jumpCase(num):
     if num==1:
         return 1
