@@ -1,6 +1,6 @@
 # BOJ 1012
 # 84ms
-# 1035B
+# 33220KB
 # DFS -> 재귀
 
 import sys
@@ -13,21 +13,20 @@ T = int(input())
 dx = [0, 0, -1, 1]
 dy = [-1, 1, 0, 0]
 
-for t in range(T):
-    def dfs(arr, x, y):
-        # 방문처리
-        arr[y][x] = 0
-        
-        # 상하좌우 확인
-        for i in range(4):
-            x2 = x + dx[i]
-            y2 = y + dy[i]
-            
-            if -1 < x2 and x2 < M and -1 < y2 and y2 < N:
-                if arr[y2][x2] == 1:
-                    dfs(arr, x2, y2)
-        
+def dfs(arr, x, y):
+    # 방문처리
+    arr[y][x] = 0
     
+    # 상하좌우 확인
+    for i in range(4):
+        x2 = x + dx[i]
+        y2 = y + dy[i]
+        
+        if -1 < x2 and x2 < M and -1 < y2 and y2 < N:
+            if arr[y2][x2] == 1:
+                dfs(arr, x2, y2)
+
+for t in range(T):
     # 맵 만들기
     M, N, K  = map(int, input().split())
     temp = []
