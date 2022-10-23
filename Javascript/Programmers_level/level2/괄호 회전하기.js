@@ -1,4 +1,4 @@
-// 13, 14 테케 실패
+// 14 테케 실패
 
 function solution(s) {
   const hash = {
@@ -33,9 +33,8 @@ function solution(s) {
     }
 
     const count_values = Object.values(count)
-    count_values.forEach((item) => {
-      if (item !== 0) return false
-    })
+    const num_no = count_values.filter((item) => item !== 0)
+    if (num_no.length > 0) return false
     return true
   }
 
